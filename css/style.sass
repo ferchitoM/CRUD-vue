@@ -1,0 +1,390 @@
+::-webkit-scrollbar
+    width: 7px
+
+/* Track */
+::-webkit-scrollbar-track
+    background: #e8ebf0
+
+/* Handle */
+::-webkit-scrollbar-thumb
+    background: #b3b3b349
+    border-radius: 10px
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+    background: #b3b3b3
+
+.factura.row > .col
+    border: 0px solid red
+    height: calc(100vh - 3.5rem)
+    padding: 0
+    overflow-y: auto
+    overflow-x: hidden
+
+.navbar-fixed
+    height: 3.5rem
+
+nav
+    background-color: #00b19d
+    height: 3.5rem
+    box-shadow: none !important
+
+body
+    height: 100vh
+    background-color: #e8ebf0; /*809bb6*/
+
+.resume-list
+    position: absolute
+    height: calc(100vh - 3.5rem)
+    background-color: white
+    width: 4rem !important
+    user-select: none
+
+    div
+        height: 2.3rem
+        width: 2.3rem
+        border-radius: 2.3rem
+        text-align: center
+        color: white
+        margin: 1rem 0.8rem
+        padding-top: 3.5px
+        cursor: pointer
+
+        span
+            vertical-align: middle
+            text-align: center
+            font-size: 1.1rem
+
+.input-field
+    margin: 1rem
+    margin-top: 0.5rem
+    margin-right: 1.7rem
+
+.busqueda
+    display: flex
+    user-select: none
+    .input-field
+        width: 84%
+    .prefix
+        background-color: #007e70
+        width: 3.5rem
+        height: 2.5rem
+        text-align: center
+        padding-top: 7px
+        border-radius: 5px 0 0 5px
+        color: white
+        font-size: 1.5rem
+        cursor: pointer
+    input
+        margin-left: 3.5rem !important
+        border: 2px solid #44c6b7
+        height: 34px
+        margin-top: 7px
+        background-color: white
+        border-radius: 0 5px 5px 0
+        padding-left: 10px
+    label
+        margin-left: 4rem !important
+        margin-top: 3px
+
+    .nuevo-prod
+        height: 2.2rem
+        margin-top: 1rem
+        display: flex
+        align-items: center
+        cursor: pointer
+
+        label
+            margin-left: 0.5rem !important
+            color: #00b19d
+            font-weight: 500
+            cursor: pointer
+        i
+            margin-left: 0.5rem
+            color: #00b19d
+
+.product-container
+    padding-left: 4rem !important
+
+.item-list
+    background-color: white
+    padding: 0rem !important
+    position: relative
+
+.product-list
+    display: flex
+    flex-wrap: wrap
+
+.marco-img
+    background-color: white
+    width: 12.4rem
+    height: 14rem
+    padding: 0.7rem
+    display: flex
+    justify-content: center
+    margin-left: 5px
+
+    & .inventario
+        background-color: white
+        position: absolute
+        bottom: 4.8rem
+        right: 0.5rem
+        font-size: 0.7rem
+        width: 3rem
+        height: 1.2rem
+        text-align: center
+        padding-top: 1px
+        color: #7a7a7a
+        font-weight: bold
+
+.img-prod
+    width: 12.4rem
+    height: 12.5rem
+    margin-left: -5px
+    background-size: cover
+    background-position: center center
+
+.prod
+    position: relative
+    background-color: white
+    width: 13rem
+    height: 19rem
+    display: flex
+    margin-left: 3.5rem
+    margin-right: 3rem
+    margin-bottom: 1.5rem
+    align-items: center
+    flex-direction: column
+    border: 2px solid white
+    transition: all 200ms ease
+    cursor: pointer
+    user-select: none
+
+    & .codigo
+        background-color: white
+        position: absolute
+        top: -0.3rem
+        left: 0.5rem
+        font-size: 0.8rem
+        width: 3.2rem
+        height: 1.4rem
+        text-align: center
+        padding-top: 2px
+        color: #44c6b7
+        font-weight: 500
+
+    .top
+        position: absolute
+        width: 2.5rem
+        height: 1.7rem
+        background-color: white
+        padding-left: 4px
+        color: #44c6b7
+        right: 8px
+        top: 1rem
+        font-size: 0.5rem
+
+    & .nombre
+        color: #b9b9b9
+        margin-top: 0rem
+        font-size: 0.9rem
+
+    & .precio
+        font-weight: bold
+        color: #7a7a7a
+        margin-top: -0.4rem
+
+    & .cantidad
+        background-color: white
+        border: 2px solid #44c6b7
+        width: 2.3rem
+        height: 2.3rem
+        border-radius: 31px
+        color: #44c6b7
+        font-weight: 500
+        text-align: center
+        padding-top: 3.5px
+        position: absolute
+        top: -1.6rem
+        right: -0.7rem
+        opacity: 0
+
+.selected
+    border: 2px solid #44c6b7
+    opacity: 1 !important
+
+.item-prod
+    color: #7a7a7a
+    line-height: 8px
+    & .nombre
+        font-weight: 500
+    & .precio
+        font-size: 0.9rem
+    & .codigo
+        color: #44c6b7
+        font-weight: 500
+        font-size: 0.9rem
+
+.botones-cantidad
+    display: flex
+    justify-content: center
+    flex-direction: row
+
+    & .cantidad
+        background-color: white
+        border: 2px solid #44c6b7
+        width: 2.3rem
+        height: 2.3rem
+        border-radius: 31px
+        color: #44c6b7
+        font-weight: 500
+        text-align: center
+        padding-top: 3.5px
+        top: -1.6rem
+        right: -0.7rem
+
+    & .b-mas, .b-menos
+        cursor: pointer
+        color: #b9b9b9
+        width: 2rem
+        height: 2rem
+        border-radius: 27px
+        text-align: center
+        margin-right: 5px
+        margin-left: 5px
+
+        span
+            vertical-align: middle
+            font-size: 1.5rem
+            line-height: 0px
+
+.eliminar
+    display: flex
+    justify-content: flex-end
+    flex-direction: row
+
+    i
+        margin-top: 10px
+        padding-top: 3.5px
+        border: 2px solid #809bb6
+        border-radius: 5px
+        height: 31px
+        width: 25px
+        color: #809bb6
+        margin-left: 0.5rem
+        font-size: 1.3rem
+        text-align: center
+        cursor: pointer
+
+.item-container
+    //border: 1px solid red
+    overflow-y: auto
+    height: 53vh
+
+table
+    *
+        user-select: none
+    td
+        padding: 0 10px
+
+        ntchield(1)
+        width: 60%
+    tr
+        border-bottom: none
+
+.titulo-factura
+    background-color: #809bb6
+    height: 2.5rem
+    position: relative
+    text-align: center
+    color: white
+    padding-top: 0.5rem
+
+    .dentado
+        background: url('../images/tri.svg') center center repeat-x
+        background-size: 20px
+        height: 20px
+        width: 100%
+        position: absolute
+        bottom: -20px
+        user-select: 0
+
+.cabecera, .cliente
+    display: flex
+    flex-direction: row
+    margin-top: 1.5rem
+    margin-bottom: 0
+    padding-left: 5px
+    //border-bottom: 1px solid #e8ebf0
+
+    .input-field
+        width: 50%
+        margin-bottom: 1px
+
+        input
+            height: 2rem
+            margin-top: 5px
+            padding-left: 5px
+            // border: 1px solid #b9b9b9
+            // border-radius: 5px
+            font-size: 0.9rem
+            color: #7e7e7e
+
+.cabecera
+    border-bottom: 0
+.cliente
+    margin-top: 5px
+
+.pie
+    background-color: #f5f5f5
+    height: 7.5rem
+    width: 100%
+    position: absolute !important
+    bottom: 0
+    margin: 0 !important
+    padding: 0 !important
+    color: white
+    user-select: none
+
+    .vender
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        align-items: center
+        background-color: #00b19d
+        height: 3rem
+        font-size: 1.3rem
+        font-weight: 500
+        border-radius: 5px
+        vertical-align: middle
+        text-align: center
+        margin: 1rem 10px 1rem 10px !important
+        padding: 1rem
+
+    .cantidad
+        background-color: #809bb6
+        height: 2.5rem
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 0.5rem
+
+.modal
+    width: 40% !important
+    max-height: 80% !important
+    height: 80% !important
+
+    form
+        margin-top: 1rem
+        .helper-text
+            color: red
+
+    .foto
+        //border: 1px solid red
+        height: 22rem
+        display: flex
+        justify-content: center
+        align-items: center !important
+    img
+        width: 15rem
+        height: 15rem

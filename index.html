@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD con vuejs</title>
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="Materialize/materialize.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper"></div>
+        </nav>
+      </div>
+      <div class="factura row">
+        <div class="resume-list">
+          <!-- *RESUMEN -->
+          <div
+            v-for="res in resume_prods"
+            @click="resumen(res.letra)"
+            :style="{'background-color': res.color}"
+          >
+            <span>{{ res.letra }}</span>
+          </div>
+          <!-- *RESUMEN -->
+        </div>
+        <div class="col s8 product-container" id="scroll">
+          <!-- *BUSQUEDA* -->
+          <div class="busqueda">
+            <div class="input-field">
+              <i class="material-icons prefix" @click="filtrar">search</i>
+              <input
+                v-model="search"
+                @keyup="filtrar"
+                placeholder="BUSCAR PRODUCTOS"
+              />
+            </div>
+            <div class="nuevo-prod">
+              <a class="modal-trigger" href="#create_prod">
+                <label>NUEVO</label>
+                <i class="material-icons">add_to_photos</i>
+              </a>
+            </div>
+          </div>
+          <!-- *BUSQUEDA* -->
+
+          <div class="product-list">
+            <!-- *PRODUCTO -->
+            <div
+              class="prod z-depth-3"
+              v-for="p in mostrar_productos"
+              :key="'pro' + p.codigo"
+              :class="{selected: p.selected}"
+              @click="insertar(p.codigo)"
+            >
+              <p class="codigo">{{ p.codigo }}</p>
+              <p class="top" :style="{ opacity: p.top}">
+                <i class="material-icons prefix">star</i>
+              </p>
+              <p class="cantidad" :class="{selected: p.selected}">
+                {{ p.cantidad }}
+              </p>
+              <div class="marco-img">
+                <div
+                  class="img-prod"
+                  :style="{
+                      'background-image': `url('images/${p.imagen}')`
+                    }"
+                ></div>
+                <p class="inventario">Inv {{ p.inventario }}</p>
+              </div>
+              <p class="nombre">{{ p.nombre }}</p>
+              <p class="precio">{{ formatoMoneda(p.precio) }}</p>
+            </div>
+            <!-- *PRODUCTO -->
+          </div>
+        </div>
+        <div class="col s4 item-list">
+          <!-- *TITULO* -->
+          <div class="titulo-factura">
+            FACTURA DE VENTA
+            <div class="dentado"></div>
+          </div>
+          <div class="row cabecera">
+            <div class="input-field">
+              <input id="first_name" type="text" class="validate" value="COP" />
+              <label for="first_name">Moneda</label>
+            </div>
+            <div class="input-field">
+              <input
+                value="GENERAL"
+                id="first_name"
+                type="text"
+                class="validate"
+              />
+              <label for="first_name">Lista de precios</label>
+            </div>
+          </div>
+          <div class="row cliente">
+            <div class="input-field">
+              <input
+                placeholder="Documento"
+                id="first_name"
+                type="text"
+                class="validate"
+                v-model="cliente.doc"
+              />
+              <label for="first_name">Datos cliente</label>
+            </div>
+            <div class="input-field">
+              <input
+                placeholder="Nombre"
+                id="first_name"
+                type="text"
+                class="validate"
+                v-model="cliente.nombre"
+              />
+            </div>
+          </div>
+
+          <div class="item-container">
+            <table>
+              <tbody>
+                <!-- *ITEM FACTURA -->
+                <tr v-for="item in item_factura">
+                  <td class="item-prod">
+                    <p class="nombre">{{item.nombre}}</p>
+                    <p class="precio">
+                      {{formatoMoneda(item.precio)}}
+                      <span class="codigo">{{item.codigo}}</span>
+                    </p>
+                  </td>
+                  <td>
+                    <div class="botones-cantidad">
+                      <p class="b-menos z-depth-2" @click="restar(item.codigo)">
+                        <span>-</span>
+                      </p>
+                      <p class="cantidad">{{item.cantidad}}</p>
+                      <p class="b-mas z-depth-2" @click="sumar(item.codigo)">
+                        <span>+</span>
+                      </p>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="eliminar">
+                      <p>{{formatoMoneda(item.subtotal)}}</p>
+                      <i class="material-icons" @click="eliminar(item.codigo)"
+                        >delete</i
+                      >
+                    </div>
+                  </td>
+                </tr>
+                <!-- *ITEM FACTURA -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row pie">
+            <div class="vender">
+              <span>VENDER</span>
+              <span class="total">{{formatoMoneda(factura.total)}}</span>
+            </div>
+            <div class="cantidad">
+              <span class="cant-prod">{{ item_factura.length }} PRODUCTOS</span>
+              <span>CANCELAR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- *Modal -->
+      <div id="create_prod" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>Nuevo producto</h4>
+          <form class="col s12">
+            <div class="row">
+              <div class="col s6">
+                <div class="row">
+                  <div class="input-field">
+                    <input
+                      id="input_codigo"
+                      type="number"
+                      class="validate"
+                      v-model="nuevo_producto.codigo"
+                    />
+                    <label for="codigo">Código</label>
+                    <span
+                      v-if="errors.nuevo_prod.codigo.length"
+                      class="helper-text"
+                      >{{errors.nuevo_prod.codigo}}</span
+                    >
+                  </div>
+                  <div class="input-field">
+                    <input
+                      id="input_nombre"
+                      type="text"
+                      class="validate"
+                      v-model="nuevo_producto.nombre"
+                    />
+                    <label for="input_nombre">Nombre</label>
+                    <span
+                      v-if="errors.nuevo_prod.nombre.length"
+                      class="helper-text"
+                      >{{errors.nuevo_prod.nombre}}</span
+                    >
+                  </div>
+                  <div class="input-field">
+                    <input
+                      id="input_precio"
+                      type="number"
+                      class="validate"
+                      v-model="nuevo_producto.precio"
+                    />
+                    <label for="input_precio">Precio</label>
+                    <span
+                      v-if="errors.nuevo_prod.precio.length"
+                      class="helper-text"
+                      >{{errors.nuevo_prod.precio}}</span
+                    >
+                  </div>
+                  <div class="input-field">
+                    <input
+                      id="input_inventario"
+                      type="number"
+                      class="validate"
+                      v-model="nuevo_producto.inventario"
+                    />
+                    <label for="input_inventario">Inventario</label>
+                    <span
+                      v-if="errors.nuevo_prod.inventario.length"
+                      class="helper-text"
+                      >{{errors.nuevo_prod.inventario}}</span
+                    >
+                  </div>
+                  <div class="input-field">
+                    <label>
+                      <input type="checkbox" v-model="nuevo_producto.top" />
+                      <span>Marcar como producto TOP</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col s6 foto">
+                <img src="images/default.png" alt="" />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a class="waves-effect waves-green btn-flat" @click="crear_producto"
+            >Guardar</a
+          >
+          <a class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+        </div>
+      </div>
+      <!-- *Modal -->
+    </div>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="Materialize/materialize.min.js"></script>
+    <script src="js/randomColor.min.js"></script>
+    <script src="js/helpers.js"></script>
+    <script src="vue@3.2.23/vue.global.js"></script>
+    <script src="js/script.js"></script>
+
+    <script>
+      //   document.addEventListener("DOMContentLoaded", function () {
+      //     var elems = document.querySelectorAll(".modal");
+      //     var instances = M.Modal.init(elems, null);
+      //     instances[0].open();
+      //   });
+    </script>
+  </body>
+</html>
