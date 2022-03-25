@@ -140,7 +140,7 @@ const App = {
   },
   methods: {
     async get_products() {
-      let response = await axios.get("http://127.0.0.1:8000/products");
+      let response = await axios.get("http://192.168.100.13:3000/products");
 
       this.lista_productos = response.data;
       this.lista_productos.map((item) => (item.selected = false));
