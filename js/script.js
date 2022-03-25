@@ -136,11 +136,17 @@ const App = {
       },
     ];
 
-    this.mostrar_productos = this.lista_productos;
-
-    this.resume_prods = this.make_resume(this.lista_productos);
+    this.get_products();
   },
   methods: {
+    async get_products() {
+      let response = await axios.get("http://127.0.0.1:8000/products");
+
+      this.lista_productos = response.data;
+      this.lista_productos.map((item) => (item.selected = false));
+      this.mostrar_productos = this.lista_productos;
+      this.resume_prods = this.make_resume(this.lista_productos);
+    },
     insertar(codigo_buscar) {
       let item = this.mostrar_productos.find(
         (pro) => pro.codigo == codigo_buscar

@@ -47,11 +47,13 @@ body {
   position: absolute;
   height: calc(100vh - 3.5rem);
   background-color: white;
-  width: 4rem !important;
+  width: 4.3rem !important;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .resume-list div {
