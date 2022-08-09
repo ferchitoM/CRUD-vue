@@ -20,132 +20,137 @@ const App = {
     this.modal_crearProd = M.Modal.init(modal, null);
   },
   created() {
-    this.errors["nuevo_prod"] = {
-      precio: "",
-      codigo: "",
-      nombre: "",
-      inventario: "",
-    };
-    this.errors["nuevo_cliente"] = {};
+    // this.errors["nuevo_prod"] = {
+    //   precio: "",
+    //   codigo: "",
+    //   nombre: "",
+    //   inventario: "",
+    // };
+    // this.errors["nuevo_cliente"] = {};
 
-    this.nuevo_producto = {
-      precio: "",
-      codigo: "",
-      nombre: "",
-      top: 0,
-      imagen: "default.png",
-      inventario: "",
-    };
+    // this.nuevo_producto = {
+    //   precio: "",
+    //   codigo: "",
+    //   nombre: "",
+    //   top: 0,
+    //   imagen: "default.png",
+    //   inventario: "",
+    // };
 
-    this.cliente = {
-      doc: "",
-      nombre: "",
-    };
+    // this.cliente = {
+    //   doc: "",
+    //   nombre: "",
+    // };
 
-    this.factura = {
-      fecha: "",
-      hora: "",
-      numero: 1,
-      doc_cliente: this.cliente.doc,
-      nombre_cliente: this.cliente.nombre,
-      iva: 0,
-      bruto: 0,
-      total: 0,
-    };
+    // this.factura = {
+    //   fecha: "",
+    //   hora: "",
+    //   numero: 1,
+    //   doc_cliente: this.cliente.doc,
+    //   nombre_cliente: this.cliente.nombre,
+    //   iva: 0,
+    //   bruto: 0,
+    //   total: 0,
+    // };
 
-    this.lista_productos = [
-      {
-        precio: 100000,
-        codigo: 52020,
-        nombre: "Pro x-100 - Ryzen 5 3600",
-        top: 1,
-        imagen: "gamer1.jpg",
-        inventario: 51,
-      },
-      {
-        precio: 150000,
-        codigo: 454525,
-        top: 0,
-        nombre: "High Tech - Ryzen 5 3600",
-        imagen: "gamer2.png",
-        inventario: 42,
-      },
-      {
-        precio: 160000,
-        codigo: 98754,
-        top: 1,
-        nombre: "Hirez - Ryzen 5 3600",
-        imagen: "gamer3.jpg",
-        inventario: 74,
-      },
-      {
-        precio: 120000,
-        codigo: 87452,
-        top: 0,
-        nombre: "Ultrakill - Ryzen 5 3600",
-        imagen: "gamer4.jpg",
-        inventario: 76,
-      },
-      {
-        precio: 110000,
-        codigo: 55211,
-        top: 0,
-        nombre: "Maxproz - Ryzen 5 3600",
-        imagen: "gamer1.jpg",
-        inventario: 7,
-      },
-      {
-        precio: 115000,
-        codigo: 987872,
-        nombre: "Sizen-T - Ryzen 5 3600",
-        top: 1,
-        imagen: "gamer1.jpg",
-        inventario: 7,
-      },
-      {
-        precio: 180000,
-        codigo: 987541,
-        top: 0,
-        nombre: "UHD - Ryzen 5 3600",
-        imagen: "gamer2.png",
-        inventario: 5,
-      },
-      {
-        precio: 150000,
-        codigo: 785421,
-        top: 0,
-        nombre: "Xpu-50 - Ryzen 5 3600",
-        imagen: "gamer3.jpg",
-        inventario: 25,
-      },
-      {
-        precio: 130000,
-        codigo: 125544,
-        top: 1,
-        nombre: "Sacntum - Ryzen 5 3600",
-        imagen: "gamer4.jpg",
-        inventario: 5,
-      },
-      {
-        precio: 140000,
-        codigo: 465546,
-        top: 1,
-        nombre: "Aurora Lux - Ryzen 5 3600",
-        imagen: "gamer1.jpg",
-        inventario: 45,
-      },
-    ];
+    // this.lista_productos = [
+    //   {
+    //     precio: 100000,
+    //     codigo: 52020,
+    //     nombre: "Pro x-100 - Ryzen 5 3600",
+    //     top: 1,
+    //     imagen: "gamer1.jpg",
+    //     inventario: 51,
+    //   },
+    //   {
+    //     precio: 150000,
+    //     codigo: 454525,
+    //     top: 0,
+    //     nombre: "High Tech - Ryzen 5 3600",
+    //     imagen: "gamer2.png",
+    //     inventario: 42,
+    //   },
+    //   {
+    //     precio: 160000,
+    //     codigo: 98754,
+    //     top: 1,
+    //     nombre: "Hirez - Ryzen 5 3600",
+    //     imagen: "gamer3.jpg",
+    //     inventario: 74,
+    //   },
+    //   {
+    //     precio: 120000,
+    //     codigo: 87452,
+    //     top: 0,
+    //     nombre: "Ultrakill - Ryzen 5 3600",
+    //     imagen: "gamer4.jpg",
+    //     inventario: 76,
+    //   },
+    //   {
+    //     precio: 110000,
+    //     codigo: 55211,
+    //     top: 0,
+    //     nombre: "Maxproz - Ryzen 5 3600",
+    //     imagen: "gamer1.jpg",
+    //     inventario: 7,
+    //   },
+    //   {
+    //     precio: 115000,
+    //     codigo: 987872,
+    //     nombre: "Sizen-T - Ryzen 5 3600",
+    //     top: 1,
+    //     imagen: "gamer1.jpg",
+    //     inventario: 7,
+    //   },
+    //   {
+    //     precio: 180000,
+    //     codigo: 987541,
+    //     top: 0,
+    //     nombre: "UHD - Ryzen 5 3600",
+    //     imagen: "gamer2.png",
+    //     inventario: 5,
+    //   },
+    //   {
+    //     precio: 150000,
+    //     codigo: 785421,
+    //     top: 0,
+    //     nombre: "Xpu-50 - Ryzen 5 3600",
+    //     imagen: "gamer3.jpg",
+    //     inventario: 25,
+    //   },
+    //   {
+    //     precio: 130000,
+    //     codigo: 125544,
+    //     top: 1,
+    //     nombre: "Sacntum - Ryzen 5 3600",
+    //     imagen: "gamer4.jpg",
+    //     inventario: 5,
+    //   },
+    //   {
+    //     precio: 140000,
+    //     codigo: 465546,
+    //     top: 1,
+    //     nombre: "Aurora Lux - Ryzen 5 3600",
+    //     imagen: "gamer1.jpg",
+    //     inventario: 45,
+    //   },
+    // ];
 
     this.get_products();
   },
   methods: {
     async get_products() {
-      let response = await axios.get("http://192.168.100.13:3000/products");
+      let response = await axios.get("http://10.224.16.245:3000/products");
 
       this.lista_productos = response.data;
-      this.lista_productos.map((item) => (item.selected = false));
-      this.mostrar_productos = this.lista_productos;
-      this.resume_prods = this.make_resume(this.lista_productos);
+
+      this.lista_productos.forEach((element) => {
+        console.log(element);
+      });
+
+      //   this.lista_productos.map((item) => (item.selected = false));
+      //   this.mostrar_productos = this.lista_productos;
+      //   this.resume_prods = this.make_resume(this.lista_productos);
     },
     insertar(codigo_buscar) {
       let item = this.mostrar_productos.find(
